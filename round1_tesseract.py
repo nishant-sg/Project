@@ -1,11 +1,11 @@
 import copy
 
 #values obtained after traversing the arena
-rfid_tag = [[0,2,0,2,0],
-[2,0,3,0,2],
-[0,3,0,3,0],
-[2,0,3,0,2],
-[0,2,0,2,0]]
+rfid_tag = [[1,1,1,1,0],
+[2,3,3,2,1],
+[3,4,4,3,1],
+[3,4,4,3,1],
+[2,3,3,2,1]]
 
 #sum matrix
 s = [[0,0,0,0,0],
@@ -40,7 +40,10 @@ def FindNeighbours(i,j):
 #marks all the given coordinates as Mines
 def MarkMine(n,m):
     for i in n:
-        m[i[0]][i[1]] = 'M '
+        if m[i[0]][i[1]] == None:
+            m[i[0]][i[1]] = 'M '
+        else:
+            continue
 
 #marks all the given coordinates as NOT Mines
 def MarkNotMine(n,m):
@@ -48,7 +51,7 @@ def MarkNotMine(n,m):
         if m[i[0]][i[1]] == None:
             m[i[0]][i[1]] = 'NM'
         else:
-            continue
+            pass
 
 #reduces the value of list coordinates by one in the rfid values
 def reduceNumbers(r,n):
@@ -92,7 +95,10 @@ def MarkMineonNumber(r,m,v):
     for i in range(len(r)):
         for j in range(len(r[i])):
             if r[i][j] == v:
-                m[i][j] = 'M '
+                if m[i][j] == None:
+                    m[i][j] = 'M '
+                else:
+                    pass
                 l.append([i,j])
     return l
 
